@@ -1,75 +1,151 @@
 <template>
-	<view class="content">
-		
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area animated bounceInLeft">
-			
-			<text class="title" @click="log">{{ title }}</text>
+	<view class="main">
+		<view class="top_tabbar"><TabBar :tabBars="tabBars" :tabIndex="tabIndex" @getTabIndex="handleIndex"></TabBar></view>
+		<view class="content">
+			<swiper>
+				<swiper-item v-for="(swiperItem,index) in swiperList" :key="index">
+					<scroll-view scroll-y="true">
+						<PostList v-for="(postItem,i) in swiperItem.list" :listItem="postItem" :key="i"></PostList>
+						</scroll-view>
+				</swiper-item>
+			</swiper>
 		</view>
-		
 	</view>
 </template>
 
 <script>
+import TabBar from '../../components/TabBar.vue';
+import PostList from '../../components/index/post-list.vue';
 export default {
+	components: {
+		TabBar,
+		PostList
+	},
 	data() {
 		return {
-			title: 'Hello....'
+			tabBars: [
+				{ label: '关注', id: 'guanzhu' },
+				{ label: '推荐', id: 'tuijian' },
+				{ label: '体育', id: 'tiyu' },
+				{ label: '热点', id: 'redian' },
+				{ label: '财经', id: 'caijing' },
+				{ label: '娱乐', id: 'yule' }
+			],
+			tabIndex: 0,
+			swiperList:[
+				{
+					list: [
+						{
+							avatar: '../../static/bgimg/1.jpg',
+							username: '张大仙',
+							isFollow: false,
+							title: '走出去,才发现你跟别人差的不是一点难点',
+							type: 'img',
+							cover_img: '../../static/demo/datapic/1.jpg',
+							like: {
+								status: true,
+								number: 570
+							},
+					
+							hate: {
+								status: false,
+								number: 2
+							},
+							comments: 54,
+							share: 14
+						},
+						{
+							avatar: '../../static/bgimg/1.jpg',
+							username: '张老三',
+							isFollow: false,
+							title: '如何用手账改变你的一生',
+							cover_img: '../../static/demo/datapic/1.jpg',
+							type: 'video',
+							play_count: '20w',
+							time: '2:47',
+							like: {
+								status: false,
+								number: 523
+							},
+					
+							hate: {
+								status: true,
+								number: 45
+							},
+							comments: 522,
+							share: 33
+						}
+					]
+				},
+				{
+					list: [
+						{
+							avatar: '../../static/bgimg/1.jpg',
+							username: '张大仙',
+							isFollow: false,
+							title: '走出去,才发现你跟别人差的不是一点难点',
+							type: 'img',
+							cover_img: '../../static/demo/datapic/1.jpg',
+							like: {
+								status: true,
+								number: 570
+							},
+					
+							hate: {
+								status: false,
+								number: 2
+							},
+							comments: 54,
+							share: 14
+						},
+						{
+							avatar: '../../static/bgimg/1.jpg',
+							username: '张老三',
+							isFollow: false,
+							title: '如何用手账改变你的一生',
+							cover_img: '../../static/demo/datapic/1.jpg',
+							type: 'video',
+							play_count: '20w',
+							time: '2:47',
+							like: {
+								status: false,
+								number: 523
+							},
+					
+							hate: {
+								status: true,
+								number: 45
+							},
+							comments: 522,
+							share: 33
+						}
+					]
+				}
+			]
 		};
 	},
-	onLoad() {
-		// console.log(q);
-	},
-	onShow(){
-		setTimeout(()=>{
-			
-		this.title = '页面show了'
-		},1000)
-	},
-	onHide(){
-		this.title = '页面隐藏'
-	},
+	onLoad() {},
 	methods: {
-		log(){
-			console.log(111)
-			this.title = '你已经点击了';
+		handleIndex(index) {
+			this.tabIndex = index;
+			console.log(index);
 		}
-		
 	}
 };
 </script>
 
 <style lang="less" scoped>
-.text-area{
-	
+::-webkit-scrollbar {
+	display: none;
+	width: 0 !important;
+	height: 0 !important;
+	-webkit-appearance: none;
+	background: transparent;
 }
 .content {
-	width: 100vw;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	view{
-		width: 100%;
-	}
+	height: calc(100vh - 72rpx);
 }
-
-.logo {
-	height: 200rpx;
-	width: 200rpx;
-	margin-top: 200rpx;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 50rpx;
-}
-
-.text-area {
-	display: flex;
-	justify-content: center;
-}
-
-.title {
-	font-size: 36rpx;
-	color: #8f8f94;
+swiper {
+	height: 100%;
 }
 </style>

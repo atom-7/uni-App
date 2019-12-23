@@ -1,0 +1,9 @@
+.wrapper .img.data-v-192aa3ec {
+  width: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.wrapper .img image.data-v-192aa3ec {
+  width: 100%;
+}
+

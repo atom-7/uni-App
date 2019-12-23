@@ -48,7 +48,16 @@ form {
 	margin-right: 0upx;
 	margin-left: 20upx;
 }
+.uni-flex-center{
+	align-items:center;
+}
 
+.uni-jb{
+	justify-content: space-between;
+}
+.uni-ja{
+	justify-content: space-around;
+}
 /* page */
 .uni-page-head{
 	padding:35upx;

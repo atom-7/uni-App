@@ -35,15 +35,14 @@
     },
     "popGesture": "close",
     "launchwebview": {
-      "render": "always",
       "id": "1",
       "kernel": "WKWebview",
       "uni-app": "auto"
     },
     "statusbar": {
       "immersed": "supportedDevice",
-      "style": "dark",
-      "background": "#F8F8F8"
+      "style": "light",
+      "background": "white"
     },
     "usingComponents": true,
     "nvueCompiler": "uni-app",
@@ -84,6 +83,12 @@
       }
     },
     "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#ffffff",
+      "bottom": {
+        "offset": "auto"
+      }
+    },
     "uni-app": {
       "compilerVersion": "2.4.2",
       "control": "v8",
@@ -92,6 +97,43 @@
       "nvue": {
         "flex-direction": "column"
       }
+    },
+    "tabBar": {
+      "color": "#c9c9c9",
+      "selectedColor": "#ffea7f",
+      "borderStyle": "rgba(255,255,255,0.4)",
+      "backgroundColor": "#ffffff",
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text": "首页",
+          "iconPath": "./static/tabbar/index.png",
+          "selectedIconPath": "static/tabbar/indexed.png"
+        },
+        {
+          "pagePath": "pages/news/news",
+          "text": "动态",
+          "iconPath": "./static/tabbar/news.png",
+          "selectedIconPath": "static/tabbar/newsed.png"
+        },
+        {
+          "pagePath": "pages/paper/paper",
+          "text": "小纸条",
+          "iconPath": "./static/tabbar/paper.png",
+          "selectedIconPath": "static/tabbar/papered.png"
+        },
+        {
+          "pagePath": "pages/my/my",
+          "text": "我的",
+          "iconPath": "./static/tabbar/home.png",
+          "selectedIconPath": "static/tabbar/homeed.png"
+        }
+      ],
+      "height": "50px",
+      "child": [
+        "lauchwebview"
+      ],
+      "selected": 0
     }
   }
 }

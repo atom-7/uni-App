@@ -1,0 +1,27 @@
+.uni-swiper-tab.data-v-1218bdb2 {
+  border-bottom: 1px solid #eeeeee;
+}
+.tab_active.data-v-1218bdb2 {
+  color: #333333 !important;
+}
+.tab_active.data-v-1218bdb2::after {
+  content: '';
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 35rpx;
+  border-radius: 10rpx;
+  width: 80rpx;
+  height: 10rpx;
+  background-color: #fede33;
+}
+.tab_item.data-v-1218bdb2 {
+  position: relative;
+  color: #999;
+  font-weight: 600;
+}
+.uni-swiper-tab.data-v-1218bdb2 {
+  line-height: 70rpx;
+  height: 70rpx;
+}
+
