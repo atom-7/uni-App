@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<view class="uni-tab-bar">
-			<scroll-view scroll-x class="uni-swiper-tab" :show-scrollbar="false">
+			<scroll-view scroll-x class="uni-swiper-tab" :scrollLeft="scrollLeft" :show-scrollbar="false">
 				<view class="swiper-tab-list tab_item" @click="handleIndex(index)" :class="tabIndex == index ? 'tab_active' : ''" v-for="(tab, index) in tabBars" :key="index">
-					{{ tab.label }}
+					{{ tab.classname }}
 				</view>
 			</scroll-view>
 		</view>
@@ -22,7 +22,8 @@ export default {
 		tabIndex:{
 			type:Number,
 			default:0
-		}
+		},
+		scrollLeft:Number
 		
 	},
 	data() {

@@ -5,4 +5,15 @@
   -webkit-appearance: none;
   background: transparent;
 }
+swiper.data-v-4f0f8e45 {
+  height: calc(100vh - 260rpx);
+  overflow: hidden;
+}
+scroll-view.data-v-4f0f8e45 {
+  height: 100%;
+  overflow: hidden;
+}
+.no_data.data-v-4f0f8e45 {
+  margin-top: calc(50vh - 400rpx);
+}
 

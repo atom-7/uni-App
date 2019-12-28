@@ -1,13 +1,13 @@
 <template>
-	<view class="wrapper">
+	<view class="wrapper animated slideInLeft fast"> 
 		<!-- <view class="item" v-for="(item, index) in list" :key="index"> -->
 			<view class="head_info uni-flex uni-jb uni-flex-center">
 				<view class="left uni-flex uni-flex-center ">
-					<view class="img"><image :src="listItem.avatar" mode="widthFix"></image></view>
+					<view class="img"><image lazy-load :src="listItem.avatar" mode="widthFix"></image></view>
 					<view class="name">{{ listItem.username }}</view>
 				</view>
 				<view class="right uni-flex uni-flex-center">
-					<view class="follow" v-if="!listItem.isFollow">+ 关注</view>
+					<view class="follow" v-if="!listItem.isFollow" @click="addFollow">+ 关注</view>
 					<view class="iconfont icon-guanbi"></view>
 				</view>
 			</view>
@@ -15,9 +15,9 @@
 				<view class="value">{{ listItem.title }}</view>
 			</view>
 			<view class="content">
-				<view class="content_img" v-if="listItem.type === 'img'"><image :src="listItem.cover_img" mode="aspectFill"></image></view>
+				<view class="content_img" v-if="listItem.type === 'img'"><image lazy-load :src="listItem.cover_img" mode="aspectFill"></image></view>
 				<view class="content_video" v-else>
-					<image :src="listItem.cover_img" mode="aspectFill"></image>
+					<image lazy-load :src="listItem.cover_img" mode="aspectFill"></image>
 					<view class="iconfont icon-bofang"></view>
 					<view class="play_count">{{ listItem.play_count }} 次播放 {{ listItem.time }}</view>
 				</view>
@@ -60,6 +60,11 @@ export default {
 		return {
 			
 		};
+	},
+	methods:{
+		addFollow(){
+			// this.$emit('changeFollow',!this.listItem.isFollow);
+		}
 	}
 };
 </script>

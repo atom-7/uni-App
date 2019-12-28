@@ -3,11 +3,15 @@
     "pages/index/index",
     "pages/news/news",
     "pages/paper/paper",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/publish/publish",
+    "pages/search/search"
   ],
   "window": {
-    "navigationBarTitleText": "糗事百科",
-    "navigationBarBackgroundColor": "white"
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "仿糗事百科",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#FFFFFF"
   },
   "tabBar": {
     "color": "#c9c9c9",

@@ -1,12 +1,19 @@
 <template>
-	<view class="main">
-		<view class="top_tabbar"><TabBar :tabBars="tabBars" :tabIndex="tabIndex" @getTabIndex="handleIndex"></TabBar></view>
+	<view class="main"> 
+		<view class="top_tabbar"><TabBar :tabBars="tabBars" :tabIndex="tabIndex" @getTabIndex="handleIndex" :scrollLeft="scrollLeft"></TabBar></view>
 		<view class="content">
-			<swiper>
-				<swiper-item v-for="(swiperItem,index) in swiperList" :key="index">
-					<scroll-view scroll-y="true">
-						<PostList v-for="(postItem,i) in swiperItem.list" :listItem="postItem" :key="i"></PostList>
-						</scroll-view>
+			<swiper @change="getSwiperIndex" :current="tabIndex">
+				<swiper-item v-for="(swiperItem, index) in swiperList" :key="index">
+					<scroll-view :show-scrollbar="false" @scrolltolower="reachBottom(index)" scroll-y="true">
+					
+						<template v-if="swiperItem&&swiperItem.list.length>0">
+							<PostList v-for="(postItem, i) in swiperItem.list" :listItem="postItem" :key="i"></PostList>
+							<LoadMore :loadStatus="swiperItem.isLoading"></LoadMore>
+						</template>
+						<template v-else> 
+							<noData class="no_data"></noData>
+						</template>
+					</scroll-view> 
 				</swiper-item>
 			</swiper>
 		</view>
@@ -14,121 +21,104 @@
 </template>
 
 <script>
+import Mock from 'mockjs';
 import TabBar from '../../components/TabBar.vue';
 import PostList from '../../components/index/post-list.vue';
+import mock from '../../common/mock/index.js';
+import { axios } from '../../common/request/axios.js';
+import LoadMore from '../../components/common/loadMore.vue';
+import noData from '../../components/common/nothing.vue';
 export default {
 	components: {
 		TabBar,
-		PostList
+		PostList,
+		LoadMore,
+		noData 
 	},
 	data() {
 		return {
 			tabBars: [
-				{ label: '关注', id: 'guanzhu' },
-				{ label: '推荐', id: 'tuijian' },
-				{ label: '体育', id: 'tiyu' },
-				{ label: '热点', id: 'redian' },
-				{ label: '财经', id: 'caijing' },
-				{ label: '娱乐', id: 'yule' }
+				{ id: '', classname: '' } // 为了防止不报错
 			],
 			tabIndex: 0,
-			swiperList:[
+			swiperList: [
 				{
-					list: [
-						{
-							avatar: '../../static/bgimg/1.jpg',
-							username: '张大仙',
-							isFollow: false,
-							title: '走出去,才发现你跟别人差的不是一点难点',
-							type: 'img',
-							cover_img: '../../static/demo/datapic/1.jpg',
-							like: {
-								status: true,
-								number: 570
-							},
-					
-							hate: {
-								status: false,
-								number: 2
-							},
-							comments: 54,
-							share: 14
-						},
-						{
-							avatar: '../../static/bgimg/1.jpg',
-							username: '张老三',
-							isFollow: false,
-							title: '如何用手账改变你的一生',
-							cover_img: '../../static/demo/datapic/1.jpg',
-							type: 'video',
-							play_count: '20w',
-							time: '2:47',
-							like: {
-								status: false,
-								number: 523
-							},
-					
-							hate: {
-								status: true,
-								number: 45
-							},
-							comments: 522,
-							share: 33
-						}
-					]
-				},
-				{
-					list: [
-						{
-							avatar: '../../static/bgimg/1.jpg',
-							username: '张大仙',
-							isFollow: false,
-							title: '走出去,才发现你跟别人差的不是一点难点',
-							type: 'img',
-							cover_img: '../../static/demo/datapic/1.jpg',
-							like: {
-								status: true,
-								number: 570
-							},
-					
-							hate: {
-								status: false,
-								number: 2
-							},
-							comments: 54,
-							share: 14
-						},
-						{
-							avatar: '../../static/bgimg/1.jpg',
-							username: '张老三',
-							isFollow: false,
-							title: '如何用手账改变你的一生',
-							cover_img: '../../static/demo/datapic/1.jpg',
-							type: 'video',
-							play_count: '20w',
-							time: '2:47',
-							like: {
-								status: false,
-								number: 523
-							},
-					
-							hate: {
-								status: true,
-								number: 45
-							},
-							comments: 522,
-							share: 33
-						}
-					]
+					list:[]
 				}
-			]
+			],
+			scrollLeft: 0
 		};
 	},
-	onLoad() {},
+	onNavigationBarSearchInputClicked: () => {
+		uni.navigateTo({
+			url:'../search/search'
+		})
+	},
+	onNavigationBarButtonTap(e) {
+		if(e.index==1){// 点击的是取消情况下
+			uni.navigateTo({
+				url:'../publish/publish'
+			})
+		}
+	},
+	onLoad() {
+		this.$axios({
+			url: 'getHomeData',
+			method: 'get'
+		}).then(res => {
+			let { data } = res.data;
+			this.swiperList = data;
+		});
+		this.getTabData();
+	},
 	methods: {
 		handleIndex(index) {
+			if(this.swiperList[index]&&this.swiperList[index].list.length>0){
 			this.tabIndex = index;
-			console.log(index);
+			}else{
+				uni.showToast({
+					 title: `没有更多`,
+					 icon:'none',
+					 duration:1500
+				})
+			}
+		},
+		getSwiperIndex({ detail }) {
+			let index = detail.current;
+			if (+index > 4) {
+				this.scrollLeft = (index - 4) * 100;
+			} else {
+				this.scrollLeft = this.scrollLeft - 100;
+			}
+			this.tabIndex = index;
+		},
+		async getTabData() {
+			this.$axios({
+				url: '/api/v1/postclass',
+				method: 'get'
+			}).then(res => {
+				let { data } = res.data;
+				this.tabBars = data.list;
+				console.log(data.list);
+			});
+		},
+		reachBottom(index) {
+			if (!this.swiperList[index].isLoading === '加载更多...') return;
+			this.swiperList[index].isLoading = '加载中';
+			if (this.swiperList[index].list.length > 15) {
+				this.swiperList[index].isLoading = '没有更多数据了';
+				return;
+			}
+			setTimeout(() => {
+				this.$axios({
+					url: 'getHomeData',
+					method: 'get'
+				}).then(res => {
+					this.swiperList[index].isLoading = '加载更多...';
+					let { data } = res.data;
+					this.swiperList[index].list = [...this.swiperList[index].list, ...data[index].list];
+				});
+			}, 1000);
 		}
 	}
 };
@@ -142,10 +132,16 @@ export default {
 	-webkit-appearance: none;
 	background: transparent;
 }
-.content {
-	height: calc(100vh - 72rpx);
-}
+
 swiper {
+	height: calc(100vh - 260rpx);
+	overflow: hidden;
+}
+scroll-view {
 	height: 100%;
+	overflow: hidden;
+}
+.no_data{
+	margin-top: calc(50vh - 400rpx);
 }
 </style>

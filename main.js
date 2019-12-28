@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import App from './App'
-
+import {axios} from './common/request/axios.js';
 Vue.config.productionTip = false
-
-App.mpType = 'app'
-
+Vue.prototype.$axios = axios;
+App.mpType = 'app';
 const app = new Vue({
-    ...App
+    ...App,
+	
 })
+
 app.$mount()

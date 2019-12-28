@@ -41,8 +41,8 @@
     },
     "statusbar": {
       "immersed": "supportedDevice",
-      "style": "light",
-      "background": "white"
+      "style": "dark",
+      "background": "#FFFFFF"
     },
     "usingComponents": true,
     "nvueCompiler": "uni-app",

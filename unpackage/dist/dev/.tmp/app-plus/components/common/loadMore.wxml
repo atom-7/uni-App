@@ -1,0 +1,1 @@
+<view class="loading data-v-c95e9c4a">{{loadStatus}}</view>

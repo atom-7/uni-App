@@ -1,0 +1,18 @@
+.upload.data-v-3735c6eb {
+  margin-top: 10rpx;
+}
+.upload_img .uni-uploader__file.data-v-3735c6eb {
+  position: relative;
+}
+.upload_img .uni-uploader__file .icon-shanchu.data-v-3735c6eb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5rpx 15rpx;
+  color: white;
+  background-color: #333333;
+}
+.cell-pd.data-v-3735c6eb {
+  padding: 22rpx 30rpx;
+}
+

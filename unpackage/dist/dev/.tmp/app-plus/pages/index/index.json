@@ -28,6 +28,8 @@
   },
   "usingComponents": {
     "tab-bar": "/components/TabBar",
-    "post-list": "/components/index/post-list"
+    "post-list": "/components/index/post-list",
+    "load-more": "/components/common/loadMore",
+    "no-data": "/components/common/nothing"
   }
 }

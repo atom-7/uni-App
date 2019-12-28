@@ -1,9 +1,99 @@
+view.data-v-192aa3ec {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+image.data-v-192aa3ec {
+  width: 100%;
+}
+.wrapper.data-v-192aa3ec {
+  padding: 0 26rpx;
+  padding-top: 20rpx;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 30rpx;
+}
 .wrapper .img.data-v-192aa3ec {
-  width: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
   overflow: hidden;
+  margin-right: 20rpx;
 }
-.wrapper .img image.data-v-192aa3ec {
+.wrapper .name.data-v-192aa3ec {
+  color: #a9a9a9;
+}
+.wrapper .head_info .right .follow.data-v-192aa3ec {
+  font-size: 24rpx;
+  background-color: #f4f4f4;
+  padding: 2rpx 10rpx;
+  margin-right: 20rpx;
+}
+.wrapper .head_info .right .iconfont.data-v-192aa3ec {
+  color: #d5d5d5;
+  font-size: 24rpx;
+}
+.wrapper .title.data-v-192aa3ec {
+  color: #333;
+  margin: 15rpx 0;
+  margin-top: 25rpx;
+}
+.wrapper .title .value.data-v-192aa3ec {
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.wrapper .content .content_img.data-v-192aa3ec,
+.wrapper .content .content_video.data-v-192aa3ec {
+  height: 320rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+.wrapper .content .content_img image.data-v-192aa3ec,
+.wrapper .content .content_video image.data-v-192aa3ec {
   width: 100%;
+  height: 100%;
+}
+.wrapper .content .content_video.data-v-192aa3ec {
+  position: relative;
+}
+.wrapper .content .content_video .iconfont.data-v-192aa3ec {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 140rpx;
+  color: #ffffff;
+}
+.wrapper .content .content_video .play_count.data-v-192aa3ec {
+  position: absolute;
+  bottom: 10rpx;
+  right: 14rpx;
+  padding: 4rpx 20rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 20rpx;
+  color: #ffffff;
+  font-size: 22rpx;
+}
+.wrapper .option.data-v-192aa3ec {
+  margin-top: 30rpx;
+  padding-left: 20rpx;
+  color: #d5d5d5;
+}
+.wrapper .option .value.data-v-192aa3ec {
+  margin-left: 15rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.wrapper .option > view > view.data-v-192aa3ec {
+  margin-right: 20rpx;
+}
+.active.data-v-192aa3ec {
+  color: red;
 }
 

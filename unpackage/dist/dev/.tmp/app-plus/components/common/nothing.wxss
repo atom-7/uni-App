@@ -1,0 +1,9 @@
+.img.data-v-6ce14b7d {
+  margin: 0 auto;
+  width: 50%;
+  margin-top: calc(50vh - 350rpx);
+}
+.img image.data-v-6ce14b7d {
+  width: 100%;
+}
+
